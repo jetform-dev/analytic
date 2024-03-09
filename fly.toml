@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for jetform-analytic on 2024-03-09T13:00:06+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'jetform-analytic'
+primary_region = 'sin'
+
+[build]
+  image = "ghcr.io/umami-software/umami:postgresql-v2.10.2"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 512
